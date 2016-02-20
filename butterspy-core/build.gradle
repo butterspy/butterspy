@@ -1,0 +1,11 @@
+plugins {
+	id "java"
+	id "maven"
+}
+
+ext.displayName = "Butterspy - Core Module"
+
+dependencies {
+	compile 'javassist:javassist:3.12.1.GA'
+  compile 'org.slf4j:slf4j-api:1.7.14'
+}

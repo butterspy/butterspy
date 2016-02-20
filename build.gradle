@@ -1,0 +1,52 @@
+allprojects {
+	apply plugin:"eclipse"
+	apply plugin:"idea"
+
+	group = "org.butterspy"
+	version = "0.1-SNAPSHOT"
+}
+
+subprojects {
+	apply plugin: "java"
+	apply plugin: "groovy"
+	apply plugin: "maven-publish"
+	
+	sourceCompatibility = 1.7
+	targetCompatibility = 1.7
+
+	compileJava.options.encoding = 'UTF-8'
+	compileTestJava.options.encoding = 'UTF-8'
+	compileGroovy.options.encoding = 'UTF-8'
+	compileTestGroovy.options.encoding = 'UTF-8'
+
+	repositories {
+		mavenLocal()
+		jcenter() 
+	}
+
+	dependencies {
+		testCompile 'junit:junit:4.12'
+		testCompile 'org.hamcrest:hamcrest-all:1.3'
+		testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+	}
+	
+	task javadocJar(type: Jar, dependsOn: javadoc) {
+		classifier = 'javadoc'
+		from 'build/docs/javadoc'
+	}
+	
+	task sourceJar(type: Jar) {
+		from sourceSets.main.allJava
+		classifier "sources"
+	}
+	
+	publishing {
+	    publications {
+	        mavenJava(MavenPublication) {
+	            from components.java
+              artifact sourceJar
+              artifact javadocJar
+	      }
+	    }
+	}
+}

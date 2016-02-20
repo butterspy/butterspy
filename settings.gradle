@@ -1,0 +1,4 @@
+include 'butterspy-core'
+include 'butterspy-spock'
+
+rootProject.name = 'butterspy'
