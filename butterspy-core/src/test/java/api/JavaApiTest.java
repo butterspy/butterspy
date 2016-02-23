@@ -51,7 +51,7 @@ public class JavaApiTest {
 		for (SpyInvocation method : methods) {
 			System.out.println(method);
 		}
-
+		
 		assertThat(methods.size(), is(4));
 		// ugly String comparison here should be removed as soon as possible ;-)
 		assertThat(

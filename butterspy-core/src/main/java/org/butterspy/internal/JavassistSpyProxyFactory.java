@@ -10,9 +10,15 @@ import org.butterspy.SpyRecording;
 import org.butterspy.SpySettings;
 
 public class JavassistSpyProxyFactory implements SpyProxyFactory {
+	
+	@SuppressWarnings("unchecked")
+	public <T> T create(final T instanceToSpy,
+			final SpySettings settings) throws Exception {
+		return create((Class<T>)instanceToSpy.getClass(), instanceToSpy, settings);
+	}
 
 	@Override
-	public <T> T create(Class<T> classForSpy, final T instanceToSpy,
+	public <T> T create(final Class<T> classForSpy, final T instanceToSpy,
 			final SpySettings settings) throws Exception {
 		
 		ProxyFactory factory = new ProxyFactory();
