@@ -1,5 +1,5 @@
 include 'butterspy-core'
 include 'butterspy-spock'
-include 'butterspy-tests-grails'
+include 'integration-test-grails'
 
 rootProject.name = 'butterspy'

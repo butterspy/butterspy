@@ -1,10 +1,18 @@
 allprojects {
-	apply plugin:"eclipse"
-	apply plugin:"idea"
+	apply plugin: "eclipse"
+	apply plugin: "idea"
 
 	group = "org.butterspy"
 	version = "0.1-SNAPSHOT"
 }
+
+configure(subprojects.findAll { it.name != 'integration-test-grails'}) {
+	apply plugin: "groovy"
+	
+	compileGroovy.options.encoding = 'UTF-8'
+	compileTestGroovy.options.encoding = 'UTF-8'
+}
+
 
 subprojects {
 	apply plugin: "java"
@@ -15,8 +23,6 @@ subprojects {
 
 	compileJava.options.encoding = 'UTF-8'
 	compileTestJava.options.encoding = 'UTF-8'
-	//compileGroovy.options.encoding = 'UTF-8'
-	//compileTestGroovy.options.encoding = 'UTF-8'
 
 	repositories {
 		mavenLocal()

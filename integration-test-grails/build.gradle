@@ -13,7 +13,8 @@ buildscript {
     }
 }
 
-ext.displayName = "Butterspy - Grails/Spring Boot Tests"
+version "0.1"
+group "test"
 
 apply plugin:"eclipse"
 apply plugin:"idea"
@@ -59,6 +60,8 @@ dependencies {
     testCompile "org.grails.plugins:geb"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
+	
+	compile project(":butterspy-core")
 }
 
 task wrapper(type: Wrapper) {
@@ -66,6 +69,6 @@ task wrapper(type: Wrapper) {
 }
 
 assets {
-    minifyJs = false
-    minifyCss = false
+    minifyJs = true
+    minifyCss = true
 }
