@@ -12,6 +12,35 @@ public class Butterspy {
 	}
 
 	/**
+	 * Creates a spy for specified instance.
+	 * 
+	 * @param instanceToSpy
+	 *            Any concrete instance of specified class to spy
+	 * @return spied proxy class
+	 * @throws Exception
+	 *             in case anything fails to work with us ;-)
+	 */
+	static public <T> T spy(final T instanceToSpy) throws Exception {
+		return proxyFactory.create(instanceToSpy, withSettings());
+	}
+
+	/**
+	 * Creates a spy for specified instance.
+	 * 
+	 * @param instanceToSpy
+	 *            Any concrete instance of specified class to spy
+	 * @param settings
+	 *            Settings to influence created spy
+	 * @return spied proxy class
+	 * @throws Exception
+	 *             in case anything fails to work with us ;-)
+	 */
+	static public <T> T spy(final T instanceToSpy, final SpySettings settings)
+			throws Exception {
+		return proxyFactory.create(instanceToSpy, settings);
+	}
+
+	/**
 	 * Creates a spy for specified class or interface and instance.
 	 * 
 	 * @param classForSpy
@@ -40,12 +69,12 @@ public class Butterspy {
 	 * @throws Exception
 	 *             in case anything fails to work with us ;-)
 	 */
-	public static <T> T spy(String name, Class<T> classForSpy, final T instanceToSpy)
-			throws Exception {
-		return proxyFactory.create(classForSpy, instanceToSpy,
-				withSettings().name(name));
+	public static <T> T spy(String name, Class<T> classForSpy,
+			final T instanceToSpy) throws Exception {
+		return proxyFactory.create(classForSpy, instanceToSpy, withSettings()
+				.name(name));
 	}
-	
+
 	/**
 	 * Creates a spy for specified class or interface and instance.
 	 * 
@@ -81,9 +110,9 @@ public class Butterspy {
 	 */
 	public static <T> T spy(String name, Class<T> classForSpy,
 			final T instanceToSpy, SpySettings settings) throws Exception {
-		return proxyFactory.create(classForSpy, instanceToSpy, settings.name(name));
+		return proxyFactory.create(classForSpy, instanceToSpy,
+				settings.name(name));
 	}
-	
 
 	/**
 	 * Get the recording for specified spy.

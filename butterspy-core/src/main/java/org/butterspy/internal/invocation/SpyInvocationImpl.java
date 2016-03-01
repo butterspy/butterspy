@@ -82,9 +82,7 @@ public class SpyInvocationImpl implements SpyInvocation, Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("#");
-		builder.append(sequenceNumber);
-		builder.append(" [method=");
+		builder.append("[method=");
 		builder.append(method.getJavaMethod());
 		builder.append(", arguments=");
 		builder.append(Arrays.asList(arguments));

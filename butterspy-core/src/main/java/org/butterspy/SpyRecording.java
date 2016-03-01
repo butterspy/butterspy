@@ -28,7 +28,9 @@ public interface SpyRecording {
 	public void start();
 
 	/**
-	 * Clears any earlier recording and restarts recording.
+	 * Restarts recording with a clean slate. Erases any earlier recordings.
+	 * 
+	 * <p>Equals {@link #stop()}, clearing recordings and {@link #start()}.
 	 */
 	public void restart();
 
@@ -36,9 +38,17 @@ public interface SpyRecording {
 	 * Stops recording.
 	 * 
 	 * <p>
-	 * Method calls are no longer recorded.
+	 * Method calls are no longer recorded. Use {@link #resume()} to continue.
 	 */
 	public void stop();
+	
+	/**
+	 * Resumes recording, if stopped.
+	 * 
+	 * <p>
+	 * Does nothing if already recording.
+	 */
+	public void resume();
 
 	/**
 	 * Checks whether or not we are recording.

@@ -44,7 +44,7 @@ public class JavassistSpyProxyFactory implements SpyProxyFactory {
 				} else {
 					method.setAccessible(true);
 					Object result = method.invoke(instanceToSpy, args);
-					recording.recordInvocation(self, method, args, result);
+					recording.onInvoked(self, method, args, result);
 					return result;
 				}
 			}

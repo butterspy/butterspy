@@ -11,7 +11,7 @@ import spock.lang.Specification
 
 class JavassistSpyProxyFactorySpec extends Specification {
 	
-	SpySettings settings = Mock(SpySettings)
+	SpySettings settings = new SpySettingsImpl<?>();
 	
 	SpyProxyFactory proxyFactory
 	

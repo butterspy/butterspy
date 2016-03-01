@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.butterspy.SpySettings;
+import org.butterspy.events.InvocationListener;
 import org.butterspy.internal.debugging.VerboseSpyInvocationLogger;
-import org.butterspy.listeners.InvocationListener;
 
 public class SpySettingsImpl<T> implements SpySettings {
 
@@ -58,6 +58,7 @@ public class SpySettingsImpl<T> implements SpySettings {
 		return false;
 	}
 
+	@Override
 	public List<InvocationListener> getInvocationListeners() {
 		return this.invocationListeners;
 	}

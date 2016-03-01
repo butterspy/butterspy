@@ -1,6 +1,9 @@
 package org.butterspy;
 
 import java.io.Serializable;
+import java.util.List;
+
+import org.butterspy.events.InvocationListener;
 
 public interface SpySettings extends Serializable {
 
@@ -38,5 +41,12 @@ public interface SpySettings extends Serializable {
 	 *
 	 * @return this settings instance
 	 */
-	SpySettings verboseLogging();
+	public SpySettings verboseLogging();
+	
+	/**
+	 * Returns all invocation listeners.
+	 * 
+	 * @return all listeners
+	 */
+	public List<InvocationListener> getInvocationListeners();
 }

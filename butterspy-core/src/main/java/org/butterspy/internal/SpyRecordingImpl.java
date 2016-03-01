@@ -8,8 +8,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.butterspy.SpyRecording;
 import org.butterspy.SpySettings;
+import org.butterspy.internal.invocation.DefaultInvocationReporter;
 import org.butterspy.internal.invocation.SpyInvocationImpl;
+import org.butterspy.internal.invocation.describer.DefaultInvocationDescriber;
 import org.butterspy.invocation.SpyInvocation;
+import org.butterspy.invocation.SpyInvocationReporter;
 import org.butterspy.invocation.SpyMethod;
 
 class SpyRecordingImpl implements SpyRecording {
@@ -20,15 +23,18 @@ class SpyRecordingImpl implements SpyRecording {
 	private final Object spy;
 	private final SpySettings settings;
 	private final List<SpyInvocation> invocations = new ArrayList<SpyInvocation>();
+	private SpyInvocationReporter reporter;
 	private boolean recording = true;
 
 	SpyRecordingImpl(Object spy, SpySettings settings) {
 		this.spy = spy;
 		this.settings = settings;
+		this.reporter = new DefaultInvocationReporter(settings,
+				new DefaultInvocationDescriber());
 	}
 
-	void recordInvocation(Object spy, final Method method,
-			Object[] arguments, Object result) {
+	void onInvoked(Object spy, final Method method, Object[] arguments,
+			Object result) {
 		if (recording) {
 
 			SpyMethod spyMethod = new SpyMethod() {
@@ -60,10 +66,12 @@ class SpyRecordingImpl implements SpyRecording {
 
 			};
 
-			SpyInvocation spyInvocation = new SpyInvocationImpl(spy,
-					spyMethod, arguments, result,
-					sequenceCounter.incrementAndGet());
+			SpyInvocation spyInvocation = new SpyInvocationImpl(spy, spyMethod,
+					arguments, result, sequenceCounter.incrementAndGet());
+
 			invocations.add(spyInvocation);
+
+			reporter.report(spyInvocation);
 		}
 	}
 
@@ -92,6 +100,13 @@ class SpyRecordingImpl implements SpyRecording {
 	@Override
 	public void stop() {
 		this.recording = false;
+	}
+
+	@Override
+	public void resume() {
+		if (!recording) {
+			start();
+		}
 	}
 
 	@Override

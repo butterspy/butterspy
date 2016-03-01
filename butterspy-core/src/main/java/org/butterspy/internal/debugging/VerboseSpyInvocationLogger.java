@@ -1,6 +1,9 @@
 package org.butterspy.internal.debugging;
 
-import org.butterspy.listeners.InvocationListener;
+import java.io.PrintStream;
+
+import org.butterspy.events.InvocationEvent;
+import org.butterspy.events.InvocationListener;
 
 /**
  * Logs all invocations to standard output.
@@ -11,5 +14,20 @@ import org.butterspy.listeners.InvocationListener;
  *
  */
 public class VerboseSpyInvocationLogger implements InvocationListener {
+	
+	final PrintStream printStream;
+	
+	public VerboseSpyInvocationLogger() {
+		this(System.out);
+	}
+
+	public VerboseSpyInvocationLogger(PrintStream printStream) {
+		this.printStream = printStream;
+	}
+
+	@Override
+	public void reportInvocation(InvocationEvent invocationEvent) {
+		printStream.println(invocationEvent.getDescription());	
+	}
 
 }

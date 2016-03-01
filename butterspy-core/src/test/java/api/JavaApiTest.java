@@ -28,8 +28,9 @@ public class JavaApiTest {
 	public void createAndRecordSomeMethods() throws Exception {
 
 		// given:
-		Cat cat = Butterspy.spy(Cat.class, new Cat("Pebbles"));
-				
+		Cat cat = Butterspy.spy(Cat.class, new Cat("Pebbles"), Butterspy
+				.withSettings().verboseLogging());
+
 		// expect:
 		SpyRecording recording = Butterspy.getSpyRecording(cat);
 		assertThat("we are recording", recording.isRecording(), is(true));
@@ -48,24 +49,21 @@ public class JavaApiTest {
 
 		// then: verify the invocations
 		List<SpyInvocation> methods = recording.getInvocations();
-		for (SpyInvocation method : methods) {
-			System.out.println(method);
-		}
-		
+
 		assertThat(methods.size(), is(4));
 		// ugly String comparison here should be removed as soon as possible ;-)
 		assertThat(
 				methods.get(0).toString(),
-				is("#1 [method=public java.lang.String api.Cat.getName(), arguments=[], returnedObject=Pebbles]"));
+				is("[method=public java.lang.String api.Cat.getName(), arguments=[], returnedObject=Pebbles]"));
 		assertThat(
 				methods.get(1).toString(),
-				is("#2 [method=public void api.Cat.setName(java.lang.String), arguments=[Giggles], returnedObject=null]"));
+				is("[method=public void api.Cat.setName(java.lang.String), arguments=[Giggles], returnedObject=null]"));
 		assertThat(
 				methods.get(2).toString(),
-				is("#3 [method=public void api.Cat.setAge(int), arguments=[2], returnedObject=null]"));
+				is("[method=public void api.Cat.setAge(int), arguments=[2], returnedObject=null]"));
 		assertThat(
 				methods.get(3).toString(),
-				is("#4 [method=public java.lang.String api.Cat.greeting(), arguments=[], returnedObject=Hello, Giggles!]"));
+				is("[method=public java.lang.String api.Cat.greeting(), arguments=[], returnedObject=Hello, Giggles!]"));
 
 	}
 }
