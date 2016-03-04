@@ -21,3 +21,6 @@ if (Environment.isDevelopmentMode() && targetDir) {
     }
     logger("StackTrace", ERROR, ['FULL_STACKTRACE'], false)
 }
+
+logger('org.grails.cxf.client', DEBUG)
+logger('org.apache.cxf.interceptor', DEBUG)
