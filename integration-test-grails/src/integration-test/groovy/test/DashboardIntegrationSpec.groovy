@@ -18,6 +18,7 @@ import test.security.*
  */
 @Integration(applicationClass=test.Application)
 @Rollback
+@Ignore
 class DashboardIntegrationSpec extends GebSpec {
 	
 	def springSecurityService

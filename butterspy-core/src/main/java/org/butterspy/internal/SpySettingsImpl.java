@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.butterspy.SpySettings;
 import org.butterspy.events.InvocationListener;
-import org.butterspy.internal.debugging.VerboseSpyInvocationLogger;
+import org.butterspy.internal.listener.VerboseSpyInvocationLogger;
 
 public class SpySettingsImpl<T> implements SpySettings {
 

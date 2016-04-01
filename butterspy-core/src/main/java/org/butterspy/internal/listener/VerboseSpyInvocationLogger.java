@@ -1,4 +1,4 @@
-package org.butterspy.internal.debugging;
+package org.butterspy.internal.listener;
 
 import java.io.PrintStream;
 

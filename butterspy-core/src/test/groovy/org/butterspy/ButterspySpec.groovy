@@ -39,13 +39,3 @@ class ButterspySpec extends Specification {
 		}
 	}
 }
-@ToString
-class Cat {
-	
-	String name
-	int age
-	
-	String greeting() {
-		"Hello, $name!"
-	}
-}
