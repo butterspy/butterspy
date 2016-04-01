@@ -2,7 +2,6 @@ package test
 
 import static org.butterspy.Butterspy.*;
 import spock.lang.*
-import sun.org.mozilla.javascript.internal.ast.WithStatement;
 
 /**
  * Tests spying on domain classes.

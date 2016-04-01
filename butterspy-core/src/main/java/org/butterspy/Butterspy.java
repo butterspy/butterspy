@@ -113,7 +113,20 @@ public class Butterspy {
 		return proxyFactory.create(classForSpy, instanceToSpy,
 				settings.name(name));
 	}
-
+	
+	/**
+	 * Creates a fenced spy for specified instance.
+	 * 
+	 * @param instanceToSpy
+	 *            Any concrete instance of specified class to spy
+	 * @return spied proxy class
+	 * @throws Exception
+	 *             in case anything fails to work with us ;-)
+	 */
+	static public <T> T fence(final T instanceToSpy) throws Exception {
+		return proxyFactory.create(instanceToSpy, withSettings().fence());
+	}
+	
 	/**
 	 * Get the recording for specified spy.
 	 * 

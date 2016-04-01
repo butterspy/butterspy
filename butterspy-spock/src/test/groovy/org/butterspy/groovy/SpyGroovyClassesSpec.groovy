@@ -2,7 +2,6 @@ package org.butterspy.groovy
 
 import static org.butterspy.Butterspy.*;
 import spock.lang.*
-import sun.org.mozilla.javascript.internal.ast.WithStatement;
 
 /**
  * Tests spying on Groovy classes.

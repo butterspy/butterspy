@@ -44,9 +44,29 @@ public interface SpySettings extends Serializable {
 	public SpySettings verboseLogging();
 	
 	/**
+	 * Enables fencing of method invocations on this spy. Can be used
+	 * during test debugging to fail at certain invocations.
+	 * <p>
+	 * Calling this method multiple times makes no difference.
+	 * <p>
+	 * Example:
+	 * 
+	 * <pre class="code">
+	 * <code class="java">
+	 * SomeObject spy = spy(SomeObject.class, withSettings().fence());
+	 * </code>
+	 * </pre>
+	 *
+	 * @return this settings instance
+	 */
+	public SpySettings fence();
+	
+	/**
 	 * Returns all invocation listeners.
 	 * 
 	 * @return all listeners
 	 */
 	public List<InvocationListener> getInvocationListeners();
+	
+	public MethodInterceptor getMethodInterceptor();
 }

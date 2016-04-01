@@ -7,6 +7,7 @@ import spock.lang.*
 
 import test.webservicex.globalweather.GlobalWeatherSoap
 
+@Ignore
 @Integration
 @Rollback
 class WeatherIntegrationSpec extends Specification {

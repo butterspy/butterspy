@@ -3,8 +3,11 @@ package org.butterspy.internal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.butterspy.MethodInterceptor;
 import org.butterspy.SpySettings;
 import org.butterspy.events.InvocationListener;
+import org.butterspy.internal.interceptor.PassthruInterceptor;
+import org.butterspy.internal.interceptor.FenceInterceptor;
 import org.butterspy.internal.listener.VerboseSpyInvocationLogger;
 
 public class SpySettingsImpl<T> implements SpySettings {
@@ -12,6 +15,7 @@ public class SpySettingsImpl<T> implements SpySettings {
 	private static final long serialVersionUID = -2861156147776921893L;
 
 	private String name;
+	private MethodInterceptor methodInterceptor = new PassthruInterceptor();
 	private List<InvocationListener> invocationListeners = new ArrayList<InvocationListener>();
 
 	@Override
@@ -23,6 +27,14 @@ public class SpySettingsImpl<T> implements SpySettings {
 	@Override
 	public String getName() {
 		return this.name;
+	}
+	
+	
+
+	@Override
+	public SpySettings fence() {
+		this.methodInterceptor = new FenceInterceptor();
+		return this;
 	}
 
 	@Override
@@ -65,6 +77,10 @@ public class SpySettingsImpl<T> implements SpySettings {
 
 	public boolean hasInvocationListeners() {
 		return !invocationListeners.isEmpty();
+	}
+
+	public MethodInterceptor getMethodInterceptor() {
+		return methodInterceptor;
 	}
 
 }
