@@ -2,6 +2,7 @@ package org.butterspy;
 
 import org.butterspy.internal.JavassistSpyProxyFactory;
 import org.butterspy.internal.SpySettingsImpl;
+import org.butterspy.method.AllowInvocationsConfiguration;
 
 public class Butterspy {
 
@@ -113,7 +114,7 @@ public class Butterspy {
 		return proxyFactory.create(classForSpy, instanceToSpy,
 				settings.name(name));
 	}
-	
+
 	/**
 	 * Creates a fenced spy for specified instance.
 	 * 
@@ -126,7 +127,23 @@ public class Butterspy {
 	static public <T> T fence(final T instanceToSpy) throws Exception {
 		return proxyFactory.create(instanceToSpy, withSettings().fence());
 	}
-	
+
+	/**
+	 * Creates a fenced spy for specified instance.
+	 * 
+	 * @param instanceToSpy
+	 *            Any concrete instance of specified class to spy
+	 * @param config
+	 *            Configuration
+	 * @return spied proxy class
+	 * @throws Exception
+	 *             in case anything fails to work with us ;-)
+	 */
+	static public <T> T fence(final T instanceToSpy,
+			final AllowInvocationsConfiguration config) throws Exception {
+		return proxyFactory.create(instanceToSpy, withSettings().fence(config));
+	}
+
 	/**
 	 * Get the recording for specified spy.
 	 * 

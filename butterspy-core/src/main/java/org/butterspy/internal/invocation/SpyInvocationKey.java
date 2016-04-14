@@ -36,4 +36,35 @@ public class SpyInvocationKey {
 		return 1;
 	}
 
+	public Object getSpy() {
+		return spy;
+	}
+
+	public Method getMethod() {
+		return method;
+	}
+	
+	public String getMethodName() {
+		return method.getName();
+	}
+
+	public Object[] getArguments() {
+		return arguments;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("SpyInvocationKey [spy=");
+		builder.append(spy);
+		builder.append(", method=");
+		builder.append(method);
+		builder.append(", arguments=");
+		builder.append(Arrays.toString(arguments));
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
+	
 }

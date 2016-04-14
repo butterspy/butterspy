@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.butterspy.events.InvocationListener;
+import org.butterspy.method.AllowInvocationsConfiguration;
 
 public interface SpySettings extends Serializable {
 
@@ -60,6 +61,12 @@ public interface SpySettings extends Serializable {
 	 * @return this settings instance
 	 */
 	public SpySettings fence();
+	
+	/**
+	 * @param config
+	 * @return
+	 */
+	public SpySettings fence(AllowInvocationsConfiguration config);
 	
 	/**
 	 * Returns all invocation listeners.

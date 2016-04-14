@@ -9,6 +9,7 @@ import org.butterspy.events.InvocationListener;
 import org.butterspy.internal.interceptor.PassthruInterceptor;
 import org.butterspy.internal.interceptor.FenceInterceptor;
 import org.butterspy.internal.listener.VerboseSpyInvocationLogger;
+import org.butterspy.method.AllowInvocationsConfiguration;
 
 public class SpySettingsImpl<T> implements SpySettings {
 
@@ -33,7 +34,12 @@ public class SpySettingsImpl<T> implements SpySettings {
 
 	@Override
 	public SpySettings fence() {
-		this.methodInterceptor = new FenceInterceptor();
+		return fence(new AllowInvocationsConfiguration());
+	}
+	
+	@Override
+	public SpySettings fence(AllowInvocationsConfiguration config) {
+		this.methodInterceptor = new FenceInterceptor(config);
 		return this;
 	}
 
